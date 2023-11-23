@@ -12,8 +12,6 @@ def get_weather_by_city(city):
         response = requests.get(base_url, params=params)
         data = response.json()
 
-
-
         if response.status_code == 200:
             result_text.set(
                             f"Temperature: {data['main']['temp']}°C\n\n"
@@ -55,17 +53,13 @@ label.grid(row=0, column=2, padx=(10, 5), pady=(10, 5))  # Added right and botto
 city_entry = ttk.Entry(app)
 city_entry.grid(row=0, column=3, padx=(5, 5), pady=(10, 5))  # Added left and right margins
 
-search_button = ttk.Button(app, text="Search", command=search_weather, style="TButton")
+# Use the compound option to mimic a raised appearance
+search_button = tk.Button(app, text="Search", command=search_weather, compound="center", relief="raised")
 search_button.grid(row=0, column=4, padx=(5, 10), pady=(10, 5))  # Added left and bottom margins
 
 result_text = tk.StringVar()
-result_label = ttk.Label(app, textvariable=result_text, wraplength=400 , font=font_style)
-result_label.grid(row=1, column=0, columnspan=3, padx=(10, 10), pady=(5, 10) )  # Added left and right margins
-
-
-app.style = ttk.Style()
-app.style.configure("TButton", relief="raised")
-
+result_label = ttk.Label(app, textvariable=result_text, wraplength=400, font=font_style)
+result_label.grid(row=1, column=0, columnspan=3, padx=(10, 10), pady=(5, 10))  # Added left and right margins
 
 app.minsize(width=400, height=300)
 
